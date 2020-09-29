@@ -18,12 +18,14 @@ struct ContentView: View {
     
     @State var showAlert = false
     
+    //Обновляет исходный цвет на новый случайный
     func randomize() {
         self.rTarget = Double.random(in: 0..<1)
         self.gTarget = Double.random(in: 0..<1)
         self.bTarget = Double.random(in: 0..<1)
     }
     
+    //Подсчет результата
     func computeScore() -> Int {
       let rDiff = rGuess - rTarget
       let gDiff = gGuess - gTarget
@@ -35,6 +37,7 @@ struct ContentView: View {
    @State var score = 0
    @State var level = 1
     
+    //Добавление очков в зависимости от результата
      func scoreUp(result: Int) {
         if result < 50 {
             score+=5
@@ -49,13 +52,13 @@ struct ContentView: View {
         }
     }
     
+    // Увеличение уровня на 1
      func lvlUp(){
         self.level+=1
     }
     
     // Создания экрана программы
     var body: some View {
-        
         
         // Счет - цвета - кнопка - ползунки
         VStack {
@@ -64,7 +67,6 @@ struct ContentView: View {
             HStack {
                 Text("Score: \(score)")
                     .padding(.trailing)
-                
                 Text("Level: \(level)")
                     .padding(.leading)
             }
@@ -83,14 +85,10 @@ struct ContentView: View {
                       .foregroundColor(Color(red: rGuess, green: gGuess, blue: bGuess, opacity: 1.0))
                     HStack(alignment: .center) {
                         Text("R: \(Int(rGuess * 255.0))")
-                            
                         Text("G: \(Int(gGuess * 255.0))")
-                            
                         Text("B: \(Int(bGuess * 255.0))")
                     }
-                    
                 }
-                
             }
             .padding()
             
@@ -99,14 +97,11 @@ struct ContentView: View {
               Text("Hit Me!")
             }
             .alert(isPresented: $showAlert) {
-                
                 Alert(title: Text("Your score"), message: Text("Соответствие: \(computeScore())"), dismissButton: Alert.Button.default(Text("Next"), action: ({
                     scoreUp(result: computeScore())
                     randomize()
                     lvlUp()
                 }) ))
-                
-//               Alert(title: Text("Your Score"), message: Text("Соответствие: \(computeScore())"))
             }
         }
             // Ползунки с указанием цвета
@@ -115,8 +110,6 @@ struct ContentView: View {
                 ColorSlider(value: $gGuess, textColor: .green)
                 ColorSlider(value: $bGuess, textColor: .blue)
             }
-            
-            
         }
     }
 
@@ -132,10 +125,8 @@ struct ContentView_Previews: PreviewProvider {
 
 // Универсальный ползунок для указания цвета
 struct ColorSlider: View {
-    
     @Binding var value: Double
     var textColor: Color
-    
     var body: some View {
         HStack {
             Text("0")
