@@ -75,11 +75,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView(rGuess: 0.5, gGuess: 0.5, bGuess: 0.5)
-            ContentView(rGuess: 0.5, gGuess: 0.5, bGuess: 0.5)
-                .previewDevice("iPhone 8")
-                
-            ContentView(rGuess: 0.5, gGuess: 0.5, bGuess: 0.5)
-                .previewDevice("iPod touch (7th generation)")
+                .previewDevice("iPhone SE (2nd generation)")
         }
         
     }
