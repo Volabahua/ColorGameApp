@@ -19,12 +19,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView()
+        //let contentView = ContentView()
 
+        window!.rootViewController = UIHostingController(rootView:
+          ContentView(rGuess: 0.5, gGuess: 0.5, bGuess: 0.5))
+        
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
+            window.rootViewController = UIHostingController(rootView:
+              ContentView(rGuess: 0.5, gGuess: 0.5, bGuess: 0.5))
             self.window = window
             window.makeKeyAndVisible()
         }
@@ -61,3 +65,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+
+struct SceneDelegate_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}
